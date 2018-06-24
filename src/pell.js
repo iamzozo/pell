@@ -5,8 +5,20 @@ const appendChild = (parent, child) => parent.appendChild(child)
 const createElement = tag => document.createElement(tag)
 const queryCommandState = command => document.queryCommandState(command)
 const queryCommandValue = command => document.queryCommandValue(command)
+import { init } from 'pell'
+import Turndown from 'turndown'
+
+const { turndown } = new Turndown({ headingStyle: 'atx' })
 
 export const exec = (command, value = null) => document.execCommand(command, false, value)
+
+init({
+  element: document.getElementById('pell'),
+  actions: ['bold', 'italic', 'heading1', 'heading2', 'olist', 'ulist'],
+  onChange: html => {
+    document.getElementById('markdown-output').innerHTML = turndown(html)
+  }
+})
 
 const defaultActions = {
   bold: {
