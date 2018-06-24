@@ -43,7 +43,7 @@
       </div>
       <div style="margin-top:20px;">
         <h3>Markdown output:</h3>
-  <div id="markdown-output" style="white-space:pre-wrap;"></div>
+  <pre id="markdown-output"></pre>
     </div>
     </div>
 
@@ -56,6 +56,7 @@
         onChange: function (html) {
           document.getElementById('text-output').innerHTML = html
           document.getElementById('html-output').textContent = html
+          document.getElementById('markdown-output').innerHTML = turndown(html)
         }
       })
     </script>
